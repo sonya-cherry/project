@@ -39,5 +39,4 @@ def update(x):
 ani = animation.FuncAnimation(
     fig, update, interval=5, blit=True, frames=range(len(matrix[0])), repeat=True)
 
-ani.save('график.gif', writer='imagemagick', fps=15)
-plt.show()
+ani.save('график.gif', writer='ffmpeg', fps=30)
