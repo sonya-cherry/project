@@ -9,15 +9,17 @@ T = 900
 J = round(T / d_t)
 K = round(1 / d_x)
 matrix = [[0] * K for _ in range(J)]
+t_min = 300
+t_max = 800
 
 for j in range(len(matrix[0]) // 2):
-    matrix[0][j] = 300
+    matrix[0][j] = t_min
 for j in range(len(matrix[0]) // 2, len(matrix[0])):
-    matrix[0][j] = 800
+    matrix[0][j] = t_max
 
 for i in range(len(matrix)):
-    matrix[i][0] = 300
-    matrix[i][len(matrix[0]) - 1] = 800
+    matrix[i][0] = t_min
+    matrix[i][len(matrix[0]) - 1] = t_max
 
 for i in range(1, len(matrix) - 1):
     for j in range(1, len(matrix[0]) - 1):
