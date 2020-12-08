@@ -25,14 +25,10 @@ for i in range(1, len(matrix) - 1):
                 matrix[i - 1][j - 1] - 2 * matrix[i - 1][j] + matrix[i - 1][j + 1]) + \
                        matrix[i - 1][j]
 
-line, = plt.plot(np.array(range(len(matrix[0]))), np.array(matrix[1]))
 fig, ax = plt.subplots()
-
-
-def init():
-    ax.set_xlim(0, 100)
-    ax.set_ylim(0, 100)
-    return line,
+line, = ax.plot(np.array(range(len(matrix[0]))), np.array(matrix[1]))
+# ax.set_xlim(0, len(matrix[0]))
+# ax.set_ylim(0, len(matrix[0]))
 
 
 def update(x):
@@ -41,7 +37,7 @@ def update(x):
 
 
 ani = animation.FuncAnimation(
-    fig, update, interval=5, blit=True, frames=range(len(matrix)), repeat=True, init_func=init)
+    fig, update, interval=5, blit=True, frames=range(len(matrix[0])), repeat=True)
 
-# ani.save('график.gif', writer='imagemagick', fps=30)
+ani.save('график.gif', writer='imagemagick', fps=15)
 plt.show()
