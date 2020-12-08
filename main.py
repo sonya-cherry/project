@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
 
 l = 1.11 * (10 ** (-4))
 d_x = 0.01
@@ -25,23 +25,23 @@ for i in range(1, len(matrix) - 1):
                 matrix[i - 1][j - 1] - 2 * matrix[i - 1][j] + matrix[i - 1][j + 1]) + \
                        matrix[i - 1][j]
 
-ln, = plt.plot(np.array(range(0, 100)), np.array(matrix[1]), 'ro')
+line, = plt.plot(np.array(range(len(matrix[0]))), np.array(matrix[1]))
 fig, ax = plt.subplots()
 
 
 def init():
     ax.set_xlim(0, 100)
     ax.set_ylim(0, 100)
-    return ln,
+    return line,
 
 
-def update(frame):
-    ln.set_data(np.array(range(0, 100)), np.array(matrix[frame]))
-    return ln,
+def update(x):
+    line.set_data(np.array(range(len(matrix[0]))), np.array(matrix[x]))
+    return line,
 
 
-gif = FuncAnimation(fig, update, frames=range(0, 100),
-                    init_func=init, blit=True)
+ani = animation.FuncAnimation(
+    fig, update, interval=5, blit=True, frames=range(len(matrix)), repeat=True, init_func=init)
 
-# gif.save('график.gif', writer='imagemagick', fps=30)
+# ani.save('график.gif', writer='imagemagick', fps=30)
 plt.show()
