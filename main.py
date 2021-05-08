@@ -15,7 +15,6 @@ class Window(QWidget):
         self._init_ui()
 
     def _init_ui(self):
-        self.setGeometry(100, 100, 1000, 800)
         self.setWindowTitle('Теплопроводность')
         self.graph.setText('')
 
@@ -24,7 +23,7 @@ class Window(QWidget):
     def _plot_graph(self):
         try:
             self.graph.setText('')
-            l = float(self.temp_val.text()) * 10 ** -int(self.temp_deg.text())
+            l = float(self.temp_value.text()) * 10 ** -int(self.temp_deg.text())
             T = int(self.time_input.text())
             t_min = int(self.min_temp_input.text())
             t_max = int(self.max_temp_input.text())
