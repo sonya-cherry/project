@@ -17,6 +17,11 @@ class Window(QWidget):
     def _init_ui(self):
         self.setWindowTitle('Теплопроводность')
         self.graph.setText('')
+        self.time_input.setText('300')
+        self.temp_value.setText('1.1')
+        self.temp_deg.setText('4')
+        self.min_temp_input.setText('300')
+        self.max_temp_input.setText('800')
 
         self.draw.clicked.connect(self._plot_graph)
 
@@ -70,10 +75,10 @@ def make_plot(l, T, t_min, t_max):
         return line,
 
     ani = animation.FuncAnimation(
-        fig, update, interval=5, blit=True, frames=range(len(matrix[0])), repeat=True)
+        fig, update, interval=5, blit=True, frames=len(matrix[0]), repeat=True)
 
     try:
-        ani.save('график.gif', writer='ffmpeg', fps=30)
+        ani.save('график.gif', writer='imagemagick', fps=30)
     except PermissionError:
         pass
 
