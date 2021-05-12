@@ -70,12 +70,12 @@ def make_plot(l, T, t_min, t_max):
     fig, ax = plt.subplots()
     line, = ax.plot(np.array(range(len(matrix[0]))), np.array(matrix[1]))
 
-    def update(x):
+    def animate(x):
         line.set_data(np.array(range(len(matrix[0]))), np.array(matrix[x]))
         return line,
 
     ani = animation.FuncAnimation(
-        fig, update, interval=5, blit=True, frames=len(matrix[0]), repeat=True)
+        fig, animate, frames=len(matrix), blit=True, repeat=True, cache_frame_data=False)
 
     try:
         ani.save('график.gif', writer='imagemagick', fps=30)

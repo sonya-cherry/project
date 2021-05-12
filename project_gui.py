@@ -38,12 +38,6 @@ def animate(x):
 
 
 ani = animation.FuncAnimation(
-    fig, animate, frames=len(matrix[0]), blit=True, repeat=True, cache_frame_data=False)
+    fig, animate, frames=len(matrix), blit=True, repeat=True, cache_frame_data=False)
 
-c = 0
-for i in ani.new_frame_seq():
-    c += 1
-
-print(c)
-
-# plt.show()
+plt.show()
